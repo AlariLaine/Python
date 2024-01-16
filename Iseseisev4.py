@@ -2,6 +2,18 @@
 # Alari Laine
 # 10.01.2024
 
+#myndid
+
+def pronksikarva_summa(f):
+    kassa = 0
+    fail = open(f)   
+    for mynt in fail:
+        if int(mynt) < 10:
+            print(mynt,end="")
+            kassa += int(mynt)
+
+    print("\nKassas: ", kassa)
+
 #tervitus
 
 kylalised = 3
