@@ -1,0 +1,10 @@
+from tkinter import *
+
+aken = Tk()
+aken.title("Alari Laine")
+aken.resizable(0,0)
+aken.configure(bg="black")
+tekst = Label(aken, pady = 20, padx = 20, text="Alari Laine\n IT-23\n2024",fg="red", bg="black", font="Tahoma 16 bold italic")
+tekst.pack()
+
+aken.mainloop()
