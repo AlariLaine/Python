@@ -47,11 +47,14 @@ class ConferenceRegistrationApp:
         self.add_button = tk.Button(self.buttons_frame, text="Lisa osaleja", command=self.add_participant)
         self.add_button.grid(row=0, column=0, padx=5)
         
+        self.update_button = tk.Button(self.buttons_frame, text="Muuda andmeid", command=self.update_participant)
+        self.update_button.grid(row=0, column=1, padx=5)
+        
         self.delete_button = tk.Button(self.buttons_frame, text="Kustuta osaleja", command=self.delete_participant)
-        self.delete_button.grid(row=0, column=1, padx=5)
+        self.delete_button.grid(row=0, column=2, padx=5)
         
         self.save_button = tk.Button(self.buttons_frame, text="Salvesta andmed", command=self.save_data)
-        self.save_button.grid(row=0, column=2, padx=5)
+        self.save_button.grid(row=0, column=3, padx=5)
         
         # Participants Listbox
         self.participants_listbox = tk.Listbox(self.master, width=50)
@@ -101,6 +104,24 @@ class ConferenceRegistrationApp:
             self.clear_fields()
         else:
             messagebox.showwarning("Tähelepanu!", "Palun täitke kõik väljad.")
+    
+    def update_participant(self):
+        if self.participants_listbox.curselection():
+            index = self.participants_listbox.curselection()[0]
+            participant = self.participants[index]
+            
+            participant['name'] = self.name_entry.get()
+            participant['organization'] = self.organization_entry.get()
+            participant['email'] = self.email_entry.get()
+            participant['phone'] = self.phone_entry.get()
+            participant['presentation'] = self.presentation_entry.get()
+            
+            self.participants[index] = participant
+            self.populate_listbox()
+            self.clear_fields()
+            messagebox.showinfo("Info", "Osaleja andmed on edukalt uuendatud.")
+        else:
+            messagebox.showwarning("Tähelepanu!", "Palun valige osaleja nimekirjast.")
     
     def delete_participant(self):
         if self.participants_listbox.curselection():
